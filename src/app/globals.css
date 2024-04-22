@@ -5,3 +5,26 @@
 body{
   @apply bg-gray-100
 }
+
+.bioIn input[type='text'], .bioIn textarea{
+  @apply bg-gray-100 w-full block py-2 px-2 mb-2 
+}
+.accountInputs label{
+  @apply uppercase text-gray-500 mb-2 text-xs font-semibold
+}
+
+.radio-togglers{
+  @apply p-1  bg-gray-300 inline-flex
+}
+
+.radio-togglers span{
+  @apply p-2 px-4  text-gray-400 cursor-pointer block
+}
+
+.radio-togglers input[type='radio']{
+  @apply hidden
+}
+
+.radio-togglers input[type='radio']:checked + span{
+  @apply bg-white text-blue-500 font-bold
+}

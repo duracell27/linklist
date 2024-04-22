@@ -3,7 +3,7 @@
 import mongoose from "mongoose";
 import { Page } from "../models/Page";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "../app/api/auth/[...nextauth]/route";
 
 export const grabUsername = async (formData) => {
   const username = formData.get("username");

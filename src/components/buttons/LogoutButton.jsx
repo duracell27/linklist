@@ -1,13 +1,26 @@
-'use client'
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { signOut } from 'next-auth/react'
-import React from 'react'
+"use client";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { signOut } from "next-auth/react";
+import React from "react";
 
-const LogoutButton = () => {
+const LogoutButton = ({
+  className = "",
+  iconClass = "",
+  spanClass = "",
+  iconPos = "right",
+}) => {
   return (
-    <button className='flex items-center gap-2 border p-1 px-4 shadow-sm' onClick={()=>signOut()}>Logout <span><FontAwesomeIcon icon={faRightFromBracket} /></span></button>
-  )
-}
+    <button className={className} onClick={() => signOut()}>
+      {iconPos == "left" && (
+        <FontAwesomeIcon className={iconClass} icon={faRightFromBracket} />
+      )}
+      <span className={spanClass}>Logout</span>
+      {iconPos == "right" && (
+        <FontAwesomeIcon className={iconClass} icon={faRightFromBracket} />
+      )}
+    </button>
+  );
+};
 
-export default LogoutButton
+export default LogoutButton;

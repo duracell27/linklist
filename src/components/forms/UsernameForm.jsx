@@ -1,5 +1,5 @@
 "use client";
-import { grabUsername } from "@/app/actions/grabUsername";
+import { grabUsername } from "@/actions/grabUsername";
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";

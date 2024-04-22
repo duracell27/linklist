@@ -23,7 +23,7 @@ const Header = async () => {
         <nav className="flex gap-4 items-center text-sm text-slate-500">
           {!!session && (<>
             <Link href={'/account'}>Hello, {session?.user?.name}</Link>
-            <LogoutButton/>
+            <LogoutButton className="flex items-center gap-2 border p-1 px-4 shadow-sm"/>
           </>)}
           {!session && (
             <>

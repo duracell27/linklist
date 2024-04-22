@@ -1,6 +1,6 @@
 
 import HeroForm from "@/components/forms/HeroForm";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 
 

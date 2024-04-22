@@ -40,7 +40,7 @@ const HeroForm = ({ user }) => {
     >
       <span className="bg-white py-4 pl-4">linklist.to/</span>
       <input type="text" placeholder="username" className="py-4" />
-      <button type="submit" className="bg-blue-500 text-white py-4 px-6">
+      <button type="submit" className="bg-blue-500 text-white py-4 px-6 text-nowrap">
         Join for Free
       </button>
     </form>
