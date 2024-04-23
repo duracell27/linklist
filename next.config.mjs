@@ -4,6 +4,8 @@ const nextConfig = {
         remotePatterns:[
             {
                 hostname: '*.googleusercontent.com'
+            },{
+                hostname: 'link-list-files-shmidt.s3.amazonaws.com'
             }
         ]
     }
