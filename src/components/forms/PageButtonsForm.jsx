@@ -23,7 +23,7 @@ import SubmitButton from "../buttons/SubmitButton";
 import { savePageButtons } from "@/actions/pageActions";
 import toast from "react-hot-toast";
 import { ReactSortable } from "react-sortablejs";
-const allButtons = [
+export const allButtons = [
   {
     key: "email",
     label: "e-mail",

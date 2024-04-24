@@ -7,6 +7,11 @@ import Image from "next/image";
 
 import AppSidebar from "@/components/layout/AppSidebar";
 import { Toaster } from "react-hot-toast";
+import { Page } from "@/models/Page";
+import mongoose from "mongoose";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 const lato = Lato({ subsets: ["latin"], weight: ['100', '300', '400', '700', '900'] });
 
@@ -20,25 +25,38 @@ export default async function AppTemplate({ children }) {
   if (!session) {
     redirect("/");
   }
+  mongoose.connect(process.env.MONGODB_CONNECT_URL)
+  const page = await Page.findOne({owner: session?.user?.email})
 
   return (
     <html lang="en">
       <body className={lato.className}>
         <Toaster/>
         <main className="flex min-h-screen">
-          <aside className="bg-white w-48 p-4 pt-8 shadow">
+          <aside className="bg-white w-48 p-4  shadow ">
+            <div className="sticky top-0 pt-8">
+
+           
             <div className="">
               <Image
                 className="rounded-full overflow-hidden aspect-square w-24 mx-auto"
                 src={session?.user?.image}
                 width={128}
                 height={128}
-                alt="userAvatar"
-              />
+                alt="userAvatar"/>
             </div>
+            {page && (
+              
+              <Link href={'/'+page.uri} target="_blank" className=" text-center mt-4 flex justify-center items-center gap-1" >
+                <FontAwesomeIcon size="lg" icon={faLink} className="text-blue-500"/>
+                <span className="text-xl text-gray-300">/</span>
+                <span>{page.uri}</span>
+              
+            </Link>
+            )}
             <div className="text-center">
               <AppSidebar/>
-            </div>
+            </div> </div>
           </aside>
 
           <div className="grow">
