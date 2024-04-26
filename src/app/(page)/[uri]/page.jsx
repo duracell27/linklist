@@ -1,8 +1,6 @@
-import { allButtons } from "@/components/forms/PageButtonsForm";
+
 import { Page } from "@/models/Page";
 import { User } from "@/models/User";
-import { GetBucketInventoryConfigurationOutputFilterSensitiveLog } from "@aws-sdk/client-s3";
-import { icon } from "@fortawesome/fontawesome-svg-core";
 import { faLink, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import mongoose from "mongoose";
@@ -19,6 +17,8 @@ import {
   faWhatsapp,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import { Event } from "@/models/Event";
+import { type } from "os";
 
 const icons = {
   email: faEnvelope,
@@ -42,11 +42,15 @@ const buttonLink = (key, value) =>{
     return value
 }
 
+
+
 const UserPage = async ({ params }) => {
   const uri = params.uri;
   mongoose.connect(process.env.MONGODB_CONNECT_URL);
   const page = await Page.findOne({ uri: uri });
   const user = await User.findOne({ email: page.owner });
+
+  await Event.create({uri: uri, page: page.uri, type: 'view'})
 
   return (
     <div className="bg-blue-950 text-white min-h-screen">
@@ -89,7 +93,7 @@ const UserPage = async ({ params }) => {
       </div>
       <div className="max-w-xl mx-auto grid md:grid-cols-2 gap-12 p-4 px-8">
         {page.links.map((link, index) => (
-          <Link key={index} href={link.url} className="bg-blue-900 p-2 flex">
+          <Link ping={'/api/click?url='+btoa(link.url)+'&page='+page.uri} target="blank" key={index} href={link.url} className="bg-blue-900 p-2 flex">
             <div className="bg-blue-700 flex justify-center items-center aspect-square p-1 relative -left-10 w-[64px] h-16 overflow-hidden ">
               {link.icon && (
                 <Image
